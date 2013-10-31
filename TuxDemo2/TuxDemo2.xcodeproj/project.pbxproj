@@ -143,12 +143,12 @@
 		299A17881822C4CB0090DEE6 /* stand0.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17811822C4CB0090DEE6 /* stand0.png */; };
 		299A17891822C4CB0090DEE6 /* stand1.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17821822C4CB0090DEE6 /* stand1.png */; };
 		299A178B1822CC470090DEE6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299A178A1822CC470090DEE6 /* Images.xcassets */; };
-		299A17911822CD0B0090DEE6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A178C1822CD0B0090DEE6 /* Default-568h@2x.png */; };
 		299A17921822CD0B0090DEE6 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A178D1822CD0B0090DEE6 /* Default-Landscape~ipad.png */; };
 		299A17931822CD0B0090DEE6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A178E1822CD0B0090DEE6 /* Default.png */; };
 		299A17941822CD0B0090DEE6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A178F1822CD0B0090DEE6 /* Default@2x.png */; };
 		299A17951822CD0B0090DEE6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17901822CD0B0090DEE6 /* Icon-72.png */; };
 		299A17981822CE890090DEE6 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17971822CE890090DEE6 /* back.png */; };
+		299A179A1822DA820090DEE6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17991822DA820090DEE6 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -435,12 +435,12 @@
 		299A17811822C4CB0090DEE6 /* stand0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stand0.png; sourceTree = "<group>"; };
 		299A17821822C4CB0090DEE6 /* stand1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stand1.png; sourceTree = "<group>"; };
 		299A178A1822CC470090DEE6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		299A178C1822CD0B0090DEE6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		299A178D1822CD0B0090DEE6 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		299A178E1822CD0B0090DEE6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		299A178F1822CD0B0090DEE6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		299A17901822CD0B0090DEE6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
 		299A17971822CE890090DEE6 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		299A17991822DA820090DEE6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -898,7 +898,7 @@
 		299A17961822CD550090DEE6 /* AppImages */ = {
 			isa = PBXGroup;
 			children = (
-				299A178C1822CD0B0090DEE6 /* Default-568h@2x.png */,
+				299A17991822DA820090DEE6 /* Default-568h@2x.png */,
 				299A178D1822CD0B0090DEE6 /* Default-Landscape~ipad.png */,
 				299A178E1822CD0B0090DEE6 /* Default.png */,
 				299A178F1822CD0B0090DEE6 /* Default@2x.png */,
@@ -975,9 +975,9 @@
 				299A15EA1822C1D80090DEE6 /* Icon-Small-50.png in Resources */,
 				299A15F51822C1D80090DEE6 /* iTunesArtwork in Resources */,
 				299A15EE1822C1D80090DEE6 /* Icon-Small@2x.png in Resources */,
+				299A179A1822DA820090DEE6 /* Default-568h@2x.png in Resources */,
 				299A17871822C4CB0090DEE6 /* stand-.png in Resources */,
 				299A17881822C4CB0090DEE6 /* stand0.png in Resources */,
-				299A17911822CD0B0090DEE6 /* Default-568h@2x.png in Resources */,
 				299A17981822CE890090DEE6 /* back.png in Resources */,
 				299A17941822CD0B0090DEE6 /* Default@2x.png in Resources */,
 				299A17851822C4CB0090DEE6 /* run0.png in Resources */,
