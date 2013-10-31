@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.m
+//  TuxGameLayer.m
 //  TuxDemo2
 //
 //  Created by Marius Constantinescu on 31/10/13.
@@ -8,15 +8,15 @@
 
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
+#import "TuxGameLayer.h"
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#pragma mark - HelloWorldLayer
+#pragma mark - TuxGameLayer
 
 // HelloWorldLayer implementation
-@implementation HelloWorldLayer
+@implementation TuxGameLayer
 
 @synthesize fishes;
 @synthesize score;
@@ -29,7 +29,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	TuxGameLayer *layer = [TuxGameLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -45,10 +45,8 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
 		
-		
 		// allow touches
         self.touchEnabled=YES;
-        
         
         [self scheduleUpdate];
         
@@ -56,11 +54,9 @@
         timer = 0;
         turn = 0;
         
-        // the array of alling fish
+        // the array of falling fish
         fishes = [[CCArray alloc] initWithCapacity:6];
-        
-        
-        
+	
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
         
@@ -73,10 +69,9 @@
         //position the background
         bg.position =  ccp( size.width /2 , size.height/2 );
         
-        
         // create and position tux
         tux = [CCSprite spriteWithFile:@"stand-.png"];
-        tux.position = ccp( size.width /2 , tux.contentSize.height/2);
+        tux.position = ccp(size.width /2 , tux.contentSize.height/2);
         
         // animate tux;
         CCAnimation *anim = [CCAnimation animation];
@@ -88,8 +83,6 @@
         CCAnimate *animate = [CCAnimate actionWithAnimation:anim];
         CCRepeatForever *repeat = [CCRepeatForever actionWithAction:animate];
         [tux runAction:repeat];
-        
-        
         
         [self addChild: bg];
         [self addChild: tux];
@@ -106,10 +99,16 @@
 	return self;
 }
 
-//==================== TOUCHES ======================
 
 
+// on "dealloc" you need to release all your retained objects
+- (void) dealloc
+{
+	[super dealloc];
+	[fishes release];
+}
 
+#pragma mark - touches handler
 
 -(CGPoint) locationFromTouches:(NSSet *)touches
 {
@@ -122,16 +121,13 @@
 //Called when a finger just begins touching the screen:
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
     CGPoint touch = [self locationFromTouches:touches];
     CGSize size = [[CCDirector sharedDirector] winSize];
     //this controlls tux. if user touches screen in ints right quarter, tux move right; same for left
-    if(touch.x < size.width/4 )
-    {
+    if(touch.x < size.width/4) {
         left = YES;
     }
-    else if(touch.x > size.width - size.width/4 )
-    {
+    else if(touch.x > size.width - size.width/4) {
         right = YES;
     }
 }
@@ -144,33 +140,20 @@
     acc = 1;
 }
 
-
-// on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
-	[super dealloc];
-	[fishes release];
-}
+# pragma mark - update
 
 -(void) update:(ccTime)delta
 {
     CGPoint pos = tux.position;
     CGSize size = [[CCDirector sharedDirector] winSize];
     // move tux right or left
-    if(left)
-    {
+    if(left) {
         pos.x -= (delta * 30 * acc);
         if(pos.x < tux.contentSize.width/2)
             pos.x = tux.contentSize.width/2;
         acc += 0.1;
     }
-    else if(right)
-    {
+    else if(right) {
         pos.x += (delta * 30 * acc);
         if(pos.x > size.width - tux.contentSize.width/2)
             pos.x = size.width - tux.contentSize.width/2;
@@ -181,12 +164,10 @@
     float imageWidthHalved = [tux texture].contentSize.width * 0.5f;
     float leftBorderLimit = imageWidthHalved;
     float rightBorderLimit = size.width - imageWidthHalved;
-    if (pos.x < leftBorderLimit)
-    {
+    if (pos.x < leftBorderLimit) {
         pos.x = leftBorderLimit;
     }
-    else if (pos.x > rightBorderLimit)
-    {
+    else if (pos.x > rightBorderLimit) {
         pos.x = rightBorderLimit;
     }
     // update tux's position
@@ -196,8 +177,7 @@
     // move falling fish
     int x = rand()%480;
     timer += delta;
-    if(timer >= 1.0)
-    {
+    if(timer >= 1.0) {
         //every second, a new fish tarts falling
         CCSprite * f =[fishes objectAtIndex:turn];
         f.position = ccp(x,330);
@@ -206,6 +186,7 @@
         timer = 0;
         turn = (turn + 1) % 6;
     }
+	
     // collision detection using bounding boxes
     CGRect fishRect;
     CCSprite * f;
@@ -214,26 +195,15 @@
     {
         f = [fishes objectAtIndex:j];
         fishRect = CGRectMake(f.position.x - f.contentSize.width/2, f.position.y - f.contentSize.height/2, f.contentSize.width, f.contentSize.height);
-        
-        
-		
-        //daca se intersecteaza cu racheta
+	
+        //if it intersects a falling fish
         if(CGRectIntersectsRect(tuxRect, fishRect)) {
-            //CCSprite * bum = [CCSprite spriteWithFile:@"bum.png"];
-            //[[SimpleAudioEngine sharedEngine] playEffect:@"bum.mp3"];
-            //bum.position = tux.position;
-            //CCScaleTo *scale =[CCScaleTo actionWithDuration:1 scale:3];
-            //CCHide *hide =[CCHide action];
-            //CCSequence *seq = [CCSequence actions:scale, hide, nil];
-            //[bum runAction:seq];
-            //[self addChild:bum];
             [f stopAllActions];
             f.position = ccp(0, -30);
 			
             // update score
             noOfPoints++;
             NSString *s = [NSString stringWithFormat:@"Score: %d", noOfPoints];
-            NSLog(@"%@, %d",s, noOfPoints);
             score.string = s;
         }
     }

@@ -134,7 +134,7 @@
 		299A17681822C1D90090DEE6 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 299A17671822C1D90090DEE6 /* vec4.c */; };
 		299A176D1822C1D90090DEE6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A176C1822C1D90090DEE6 /* main.m */; };
 		299A17701822C1D90090DEE6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A176F1822C1D90090DEE6 /* AppDelegate.m */; };
-		299A17731822C1D90090DEE6 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A17721822C1D90090DEE6 /* HelloWorldLayer.m */; };
+		299A17731822C1D90090DEE6 /* TuxGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A17721822C1D90090DEE6 /* TuxGameLayer.m */; };
 		299A17761822C1D90090DEE6 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A17751822C1D90090DEE6 /* IntroLayer.m */; };
 		299A17841822C4CB0090DEE6 /* fishy-.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A177D1822C4CB0090DEE6 /* fishy-.png */; };
 		299A17851822C4CB0090DEE6 /* run0.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A177E1822C4CB0090DEE6 /* run0.png */; };
@@ -424,8 +424,8 @@
 		299A176C1822C1D90090DEE6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		299A176E1822C1D90090DEE6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		299A176F1822C1D90090DEE6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		299A17711822C1D90090DEE6 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		299A17721822C1D90090DEE6 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		299A17711822C1D90090DEE6 /* TuxGameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuxGameLayer.h; sourceTree = "<group>"; };
+		299A17721822C1D90090DEE6 /* TuxGameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuxGameLayer.m; sourceTree = "<group>"; };
 		299A17741822C1D90090DEE6 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		299A17751822C1D90090DEE6 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		299A177D1822C4CB0090DEE6 /* fishy-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fishy-.png"; sourceTree = "<group>"; };
@@ -503,8 +503,8 @@
 			children = (
 				299A176E1822C1D90090DEE6 /* AppDelegate.h */,
 				299A176F1822C1D90090DEE6 /* AppDelegate.m */,
-				299A17711822C1D90090DEE6 /* HelloWorldLayer.h */,
-				299A17721822C1D90090DEE6 /* HelloWorldLayer.m */,
+				299A17711822C1D90090DEE6 /* TuxGameLayer.h */,
+				299A17721822C1D90090DEE6 /* TuxGameLayer.m */,
 				299A17741822C1D90090DEE6 /* IntroLayer.h */,
 				299A17751822C1D90090DEE6 /* IntroLayer.m */,
 				299A15DE1822C1D80090DEE6 /* Resources */,
@@ -1085,7 +1085,7 @@
 				299A17541822C1D90090DEE6 /* matrix.c in Sources */,
 				299A163A1822C1D80090DEE6 /* CCDrawingPrimitives.m in Sources */,
 				299A16A21822C1D80090DEE6 /* ccShaders.m in Sources */,
-				299A17731822C1D90090DEE6 /* HelloWorldLayer.m in Sources */,
+				299A17731822C1D90090DEE6 /* TuxGameLayer.m in Sources */,
 				299A16F81822C1D90090DEE6 /* CCWindow.m in Sources */,
 				299A16D61822C1D80090DEE6 /* cocos2d.m in Sources */,
 				299A16831822C1D80090DEE6 /* CCProgressTimer.m in Sources */,

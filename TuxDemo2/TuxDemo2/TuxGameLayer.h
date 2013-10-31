@@ -13,7 +13,7 @@
 #import "cocos2d.h"
 
 // HelloWorldLayer
-@interface HelloWorldLayer : CCLayer
+@interface TuxGameLayer : CCLayer
 {
 	CCSprite *tux;      //player
     BOOL touched;
