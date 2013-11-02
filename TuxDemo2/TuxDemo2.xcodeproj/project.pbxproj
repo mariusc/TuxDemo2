@@ -149,6 +149,7 @@
 		299A17951822CD0B0090DEE6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17901822CD0B0090DEE6 /* Icon-72.png */; };
 		299A17981822CE890090DEE6 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17971822CE890090DEE6 /* back.png */; };
 		299A179A1822DA820090DEE6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 299A17991822DA820090DEE6 /* Default-568h@2x.png */; };
+		299A179D182316C50090DEE6 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A179C182316C50090DEE6 /* MenuLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -441,6 +442,8 @@
 		299A17901822CD0B0090DEE6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/Icon-72.png"; sourceTree = "<group>"; };
 		299A17971822CE890090DEE6 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		299A17991822DA820090DEE6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		299A179B182316C50090DEE6 /* MenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayer.h; sourceTree = "<group>"; };
+		299A179C182316C50090DEE6 /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,10 +506,12 @@
 			children = (
 				299A176E1822C1D90090DEE6 /* AppDelegate.h */,
 				299A176F1822C1D90090DEE6 /* AppDelegate.m */,
-				299A17711822C1D90090DEE6 /* TuxGameLayer.h */,
-				299A17721822C1D90090DEE6 /* TuxGameLayer.m */,
 				299A17741822C1D90090DEE6 /* IntroLayer.h */,
 				299A17751822C1D90090DEE6 /* IntroLayer.m */,
+				299A179B182316C50090DEE6 /* MenuLayer.h */,
+				299A179C182316C50090DEE6 /* MenuLayer.m */,
+				299A17711822C1D90090DEE6 /* TuxGameLayer.h */,
+				299A17721822C1D90090DEE6 /* TuxGameLayer.m */,
 				299A15DE1822C1D80090DEE6 /* Resources */,
 				299A15F61822C1D80090DEE6 /* libs */,
 				299A15E91822C1D80090DEE6 /* Icon-Small-50.png */,
@@ -1049,6 +1054,7 @@
 				299A15FA1822C1D80090DEE6 /* CCAction.m in Sources */,
 				299A17321822C1D90090DEE6 /* CocosDenshion.m in Sources */,
 				299A16B71822C1D80090DEE6 /* CCTextureCache.m in Sources */,
+				299A179D182316C50090DEE6 /* MenuLayer.m in Sources */,
 				299A175A1822C1D90090DEE6 /* neon_matrix_impl.c in Sources */,
 				299A168A1822C1D80090DEE6 /* CCScene.m in Sources */,
 				299A16091822C1D80090DEE6 /* CCActionGrid3D.m in Sources */,
