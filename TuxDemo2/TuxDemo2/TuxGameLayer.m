@@ -9,9 +9,8 @@
 
 // Import the interfaces
 #import "TuxGameLayer.h"
-
-// Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
+#import "GameOverLayer.h"
 
 #pragma mark - TuxGameLayer
 
@@ -20,7 +19,10 @@
 
 @synthesize fishes;
 @synthesize score;
+@synthesize seconds;
 @synthesize noOfPoints;
+
+int secondsFromStart;
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -47,6 +49,9 @@
 		
 		// allow touches
         self.touchEnabled=YES;
+		
+		secondsFromStart = 0;
+		noOfPoints = 0;
         
         [self scheduleUpdate];
         
@@ -63,6 +68,10 @@
         // create and position the score label
 		score = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"STHeitiJ-Light" fontSize:15];
         score.position = ccp(score.contentSize.width/2 + 10, size.height - score.contentSize.height/2);
+		
+		//create and position the seconds label
+		seconds = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time: %d", secondsFromStart] fontName:@"STHeitiJ-Light" fontSize:15];
+		seconds.position = ccp(size.width - seconds.contentSize.width/2 - 10, size.height - seconds.contentSize.height/2);
         
         // create and initialize the background
         CCSprite *bg = [CCSprite spriteWithFile:@"back.png"];
@@ -96,6 +105,7 @@
 	}
     
     [self addChild: score];
+	[self addChild:seconds];
 	return self;
 }
 
@@ -185,6 +195,19 @@
         [[fishes objectAtIndex:turn] runAction:mv];
         timer = 0;
         turn = (turn + 1) % 6;
+		
+		secondsFromStart += 1;
+		seconds.string = [NSString stringWithFormat:@"Time: %d",secondsFromStart];
+		
+		if (secondsFromStart == 50) {
+			self.seconds.color = ccRED;
+		}
+		
+		if (secondsFromStart >= 60){
+			[self gameOver];
+		}
+		
+		
     }
 	
     // collision detection using bounding boxes
@@ -208,7 +231,15 @@
         }
     }
 	
+	
 }
 
+
+-(void)gameOver
+{
+	[[CCDirector sharedDirector] pause];
+	[[CCDirector sharedDirector] replaceScene:[GameOverLayer sceneWithScore:noOfPoints]];
+	
+}
 
 @end

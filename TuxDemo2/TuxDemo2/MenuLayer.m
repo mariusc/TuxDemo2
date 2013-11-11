@@ -40,16 +40,20 @@
 	if( (self=[super init]) ) {
 		
 		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hungry Tux" fontName:@"Marker Felt" fontSize:64];
+		CCLabelTTF *titleLabel = [CCLabelTTF labelWithString:@"Hungry Tux" fontName:@"Marker Felt" fontSize:44];
 		
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
+		titleLabel.position =  ccp( size.width /2 , size.height *3/4 );
+		
+		CCLabelTTF *subtitleLabel = [CCLabelTTF labelWithString:@"Eat all the fish you can in 60 seconds" fontName:@"Marker Felt" fontSize:30];
+		subtitleLabel.position = ccp(size.width/2, size.height/2);
 		
 		// add the label as a child to this Layer
-		[self addChild: label];
+		[self addChild: titleLabel];
+		[self addChild:subtitleLabel];
 		
 		
 		
@@ -61,7 +65,7 @@
 		[CCMenuItemFont setFontSize:28];
 		
 		// to avoid a retain-cycle with the menuitem and blocks
-		__block id copy_self = self;
+//		__block id copy_self = self;
 		
 //		// Achievement Menu Item using blocks
 //		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
@@ -81,7 +85,8 @@
 //		}];
 		
 		// New Game Menu Item
-		CCMenuItem *newGame = [CCMenuItemFont itemWithString:@"New Game" target:self selector:@selector(newGameTapped)];
+		CCMenuItem *newGame = [CCMenuItemFont itemWithString:@"Start" target:self selector:@selector(newGameTapped)];
+		newGame.color = ccGREEN;
 		
 		
 //		CCMenuItem *newGame = [CCMenuItemFont itemWithString:@"New Game" block:^(id sender) {
@@ -119,7 +124,7 @@
 		CCMenu *menu = [CCMenu menuWithItems:newGame, nil];
 		
 		[menu alignItemsHorizontallyWithPadding:20];
-		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
+		[menu setPosition:ccp( size.width/2, size.height/4)];
 		
 		// Add the menu to the layer
 		[self addChild:menu];

@@ -27,6 +27,7 @@
 -(void) update:(ccTime)delta;
 @property (retain) CCArray *fishes;
 @property (retain) CCLabelTTF *score;
+@property (retain) CCLabelTTF *seconds;
 @property int noOfPoints;
 
 @end

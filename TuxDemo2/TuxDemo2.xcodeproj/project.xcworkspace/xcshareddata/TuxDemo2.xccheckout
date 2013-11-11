@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>65A2C839-8926-484D-A03E-9F30D07150DA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TuxDemo2</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4CB15731-FBC6-44BB-A289-60537525DDAC</key>
+		<string>https://github.com/mariusc/TuxDemo2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TuxDemo2/TuxDemo2.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4CB15731-FBC6-44BB-A289-60537525DDAC</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mariusc/TuxDemo2.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4CB15731-FBC6-44BB-A289-60537525DDAC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4CB15731-FBC6-44BB-A289-60537525DDAC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TuxDemo2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
