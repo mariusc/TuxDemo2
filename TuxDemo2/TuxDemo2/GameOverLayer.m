@@ -61,8 +61,10 @@
 		
 		// New Game  Item
 		CCMenuItem *newGame = [CCMenuItemFont itemWithString:@"Restart" target:self selector:@selector(newGameTapped)];
+		newGame.color = ccGREEN;
 		// Main Menu Item
 		CCMenuItem *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" target:self selector:@selector(mainMenuTapped)];
+		mainMenu.color = ccRED;
 
 		CCMenu *menu = [CCMenu menuWithItems:newGame, mainMenu, nil];
 		
