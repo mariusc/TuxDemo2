@@ -20,7 +20,7 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	GameOverLayer *layer = [[[GameOverLayer alloc] initWithScore:score] autorelease];
+	GameOverLayer *layer = [[GameOverLayer alloc] initWithScore:score];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];

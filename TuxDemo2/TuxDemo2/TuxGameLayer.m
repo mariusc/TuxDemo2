@@ -109,15 +109,6 @@ int secondsFromStart;
 	return self;
 }
 
-
-
-// on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{
-	[super dealloc];
-	[fishes release];
-}
-
 #pragma mark - touches handler
 
 -(CGPoint) locationFromTouches:(NSSet *)touches
