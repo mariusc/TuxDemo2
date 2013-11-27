@@ -13,9 +13,7 @@
 #import "cocos2d.h"
 
 // MenuLayer
-@interface MenuLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
-{
-}
+@interface MenuLayer : CCLayer
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

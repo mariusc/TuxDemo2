@@ -14,15 +14,26 @@
 
 #pragma mark - TuxGameLayer
 
+@interface TuxGameLayer()
+
+@property (strong, nonatomic) CCSprite *tux;      //player
+@property (strong) CCArray *fishes;
+@property (strong) CCLabelTTF *scoreLabel;
+@property (strong) CCLabelTTF *secondsLabel;
+@property (assign, nonatomic) int secondsFromStart;
+@property (assign, nonatomic) BOOL leftTouch;
+@property (assign, nonatomic) BOOL rightTouch;
+@property (assign, nonatomic) float acc;
+@property (assign, nonatomic) float timer;
+@property (assign, nonatomic) int turn;
+@property (assign, nonatomic) int noOfPoints;
+
+@end
+
 // HelloWorldLayer implementation
 @implementation TuxGameLayer
 
-@synthesize fishes;
-@synthesize score;
-@synthesize seconds;
-@synthesize noOfPoints;
 
-int secondsFromStart;
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -47,31 +58,35 @@ int secondsFromStart;
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
 		
+		_leftTouch = NO;
+		_rightTouch = NO;
+		_acc = 1;
+		
 		// allow touches
         self.touchEnabled=YES;
 		
-		secondsFromStart = 0;
-		noOfPoints = 0;
+		_secondsFromStart = 0;
+		_noOfPoints = 0;
         
         [self scheduleUpdate];
         
         srand(time(NULL));
-        timer = 0;
-        turn = 0;
+        _timer = 0;
+        _turn = 0;
         
         // the array of falling fish
-        fishes = [[CCArray alloc] initWithCapacity:6];
+        _fishes = [[CCArray alloc] initWithCapacity:6];
 	
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
         
         // create and position the score label
-		score = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"STHeitiJ-Light" fontSize:15];
-        score.position = ccp(score.contentSize.width/2 + 10, size.height - score.contentSize.height/2);
+		_scoreLabel = [CCLabelTTF labelWithString:@"Score: 0" fontName:@"STHeitiJ-Light" fontSize:15];
+        _scoreLabel.position = ccp(_scoreLabel.contentSize.width/2 + 10, size.height - _scoreLabel.contentSize.height/2);
 		
 		//create and position the seconds label
-		seconds = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time: %d", secondsFromStart] fontName:@"STHeitiJ-Light" fontSize:15];
-		seconds.position = ccp(size.width - seconds.contentSize.width/2 - 10, size.height - seconds.contentSize.height/2);
+		_secondsLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time: %d", _secondsFromStart] fontName:@"STHeitiJ-Light" fontSize:15];
+		_secondsLabel.position = ccp(size.width - _secondsLabel.contentSize.width/2 - 10, size.height - _secondsLabel.contentSize.height/2);
         
         // create and initialize the background
         CCSprite *bg = [CCSprite spriteWithFile:@"back.png"];
@@ -79,8 +94,8 @@ int secondsFromStart;
         bg.position =  ccp( size.width /2 , size.height/2 );
         
         // create and position tux
-        tux = [CCSprite spriteWithFile:@"stand-.png"];
-        tux.position = ccp(size.width /2 , tux.contentSize.height/2);
+        _tux = [CCSprite spriteWithFile:@"stand-.png"];
+        _tux.position = ccp(size.width /2 , _tux.contentSize.height/2);
         
         // animate tux;
         CCAnimation *anim = [CCAnimation animation];
@@ -91,21 +106,21 @@ int secondsFromStart;
         
         CCAnimate *animate = [CCAnimate actionWithAnimation:anim];
         CCRepeatForever *repeat = [CCRepeatForever actionWithAction:animate];
-        [tux runAction:repeat];
+        [_tux runAction:repeat];
         
         [self addChild: bg];
-        [self addChild: tux];
+        [self addChild: _tux];
         for(int i = 0; i < 6; i++)
         {
-            CCSprite* asteroid = [CCSprite spriteWithFile:@"fishy-.png"];
-            asteroid.position = ccp(-asteroid.contentSize.width/2 , 0);
-            [self addChild:asteroid z:0 tag:2];
-            [fishes addObject:asteroid];
+            CCSprite* fish = [CCSprite spriteWithFile:@"fishy-.png"];
+            fish.position = ccp(-fish.contentSize.width/2 , 0);
+            [self addChild:fish z:0 tag:2];
+            [_fishes addObject:fish];
         }
 	}
     
-    [self addChild: score];
-	[self addChild:seconds];
+    [self addChild: _scoreLabel];
+	[self addChild:_secondsLabel];
 	return self;
 }
 
@@ -122,114 +137,104 @@ int secondsFromStart;
 //Called when a finger just begins touching the screen:
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    CGPoint touch = [self locationFromTouches:touches];
+    CGPoint touchPoint = [self locationFromTouches:touches];
     CGSize size = [[CCDirector sharedDirector] winSize];
     //this controlls tux. if user touches screen in ints right quarter, tux move right; same for left
-    if(touch.x < size.width/4) {
-        left = YES;
+    if(touchPoint.x < size.width/4) {
+        self.leftTouch = YES;
     }
-    else if(touch.x > size.width - size.width/4) {
-        right = YES;
+    else if(touchPoint.x > size.width - size.width/4) {
+        self.rightTouch = YES;
     }
 }
 
 //Called when a finger is lifted off the screen:
 -(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    left = NO;
-    right = NO;
-    acc = 1;
+    self.leftTouch = NO;
+    self.rightTouch = NO;
+    self.acc = 1;
 }
 
 # pragma mark - update
 
 -(void) update:(ccTime)delta
 {
-    CGPoint pos = tux.position;
+    CGPoint pos = self.tux.position;
     CGSize size = [[CCDirector sharedDirector] winSize];
     // move tux right or left
-    if(left) {
-        pos.x -= (delta * 30 * acc);
-        if(pos.x < tux.contentSize.width/2)
-            pos.x = tux.contentSize.width/2;
-        acc += 0.1;
+    if(self.leftTouch) {
+        pos.x -= (delta * 30 * self.acc);
+        if(pos.x < self.tux.contentSize.width/2)
+            pos.x = self.tux.contentSize.width/2;
+        self.acc += 0.1;
     }
-    else if(right) {
-        pos.x += (delta * 30 * acc);
-        if(pos.x > size.width - tux.contentSize.width/2)
-            pos.x = size.width - tux.contentSize.width/2;
-        acc += 0.1;
+    else if(self.rightTouch) {
+        pos.x += (delta * 30 * self.acc);
+        if(pos.x > size.width - self.tux.contentSize.width/2)
+            pos.x = size.width - self.tux.contentSize.width/2;
+        self.acc += 0.1;
     }
     
-    // keep tux in the screen
-    float imageWidthHalved = [tux texture].contentSize.width * 0.5f;
-    float leftBorderLimit = imageWidthHalved;
-    float rightBorderLimit = size.width - imageWidthHalved;
-    if (pos.x < leftBorderLimit) {
-        pos.x = leftBorderLimit;
-    }
-    else if (pos.x > rightBorderLimit) {
-        pos.x = rightBorderLimit;
-    }
     // update tux's position
-    tux.position = pos;
+    self.tux.position = pos;
     
     
     // move falling fish
     int x = rand()%480;
-    timer += delta;
-    if(timer >= 1.0) {
+    self.timer += delta;
+    if(self.timer >= 1.0) {
         //every second, a new fish tarts falling
-        CCSprite * f =[fishes objectAtIndex:turn];
+        CCSprite * f =[self.fishes objectAtIndex:self.turn];
         f.position = ccp(x,330);
         CCMoveTo *mv = [CCMoveTo actionWithDuration:3.0f position:ccp(x,-30)];
-        [[fishes objectAtIndex:turn] runAction:mv];
-        timer = 0;
-        turn = (turn + 1) % 6;
+        [[self.fishes objectAtIndex:self.turn] runAction:mv];
+        self.timer = 0;
+        self.turn = (self.turn + 1) % 6;
 		
-		secondsFromStart += 1;
-		seconds.string = [NSString stringWithFormat:@"Time: %d",secondsFromStart];
+		self.secondsFromStart += 1;
+		self.secondsLabel.string = [NSString stringWithFormat:@"Time: %d",self.secondsFromStart];
 		
-		if (secondsFromStart == 50) {
-			self.seconds.color = ccRED;
+		if (self.secondsFromStart == 50) {
+			self.secondsLabel.color = ccRED;
 		}
 		
-		if (secondsFromStart >= 60){
+		if (self.secondsFromStart >= 60){
 			[self gameOver];
 		}
-		
-		
-    }
+	}
 	
     // collision detection using bounding boxes
-    CGRect fishRect;
-    CCSprite * f;
-    CGRect tuxRect = CGRectMake(tux.position.x - tux.contentSize.width/2, tux.position.y - tux.contentSize.height/2, tux.contentSize.width, tux.contentSize.height);
-	for(int j = 0; j < 6; j++)
-    {
-        f = [fishes objectAtIndex:j];
-        fishRect = CGRectMake(f.position.x - f.contentSize.width/2, f.position.y - f.contentSize.height/2, f.contentSize.width, f.contentSize.height);
+    [self detectFishCollision];
 	
+}
+
+-(void)detectFishCollision
+{
+	CGRect tuxRect = CGRectMake(self.tux.position.x - self.tux.contentSize.width/2, self.tux.position.y - self.tux.contentSize.height/2, self.tux.contentSize.width, self.tux.contentSize.height);
+	
+	for (CCSprite* f in self.fishes) {
+		
+        CGRect fishRect = CGRectMake(f.position.x - f.contentSize.width/2, f.position.y - f.contentSize.height/2, f.contentSize.width, f.contentSize.height);
+		
         //if it intersects a falling fish
         if(CGRectIntersectsRect(tuxRect, fishRect)) {
             [f stopAllActions];
             f.position = ccp(0, -30);
 			
             // update score
-            noOfPoints++;
-            NSString *s = [NSString stringWithFormat:@"Score: %d", noOfPoints];
-            score.string = s;
+            self.noOfPoints++;
+            self.scoreLabel.string = [NSString stringWithFormat:@"Score: %d", self.noOfPoints];
         }
     }
-	
-	
+
 }
 
 
 -(void)gameOver
 {
 	[[CCDirector sharedDirector] pause];
-	[[CCDirector sharedDirector] replaceScene:[GameOverLayer sceneWithScore:noOfPoints]];
+	[[CCDirector sharedDirector] replaceScene:[GameOverLayer sceneWithScore:self.noOfPoints]];
 	
 }
 

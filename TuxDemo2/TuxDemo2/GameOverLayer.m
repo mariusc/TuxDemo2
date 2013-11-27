@@ -13,7 +13,7 @@
 
 @implementation GameOverLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+
 +(CCScene *) sceneWithScore:(int)score
 {
 	// 'scene' is an autorelease object.
@@ -51,9 +51,7 @@
 		
 		
 		[[CCDirector sharedDirector] runningScene];
-		//
-		// Leaderboards and Achievements
-		//
+
 		
 		// Default font size will be 28 points.
 		[CCMenuItemFont setFontSize:28];
